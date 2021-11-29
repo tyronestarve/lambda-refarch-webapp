@@ -8,4 +8,5 @@ const config = {
   "redirect_url": "https://master.d1miyvz1qrjpmq.amplifyapp.com"                                      // AmplifyURL
 };
 
+
 export default config;
