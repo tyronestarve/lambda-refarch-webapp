@@ -58,6 +58,7 @@ function App() {
   const getAllTodos = async () => {
     const result = await axios({
       url: `${config.api_base_url}/item/`,
+      mode: "cors",
       headers: {
         'X-Api-Key': config.api_key
       }
