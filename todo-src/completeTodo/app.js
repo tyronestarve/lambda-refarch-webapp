@@ -8,7 +8,7 @@ const { metricScope, Unit } = require("aws-embedded-metrics");
 const DDB = new AWS.DynamoDB({ apiVersion: "2012-10-08" });
 
 // environment variables
-const { TABLE_NAME, ENDPOINT_OVERRIDE, REGION } = process.env;
+const { TABLE_NAME, ENDPOINT_OVERRIDE, REGION,USER } = process.env;
 const options = { region: REGION };
 AWS.config.update({ region: REGION });
 
@@ -72,7 +72,8 @@ exports.completeToDoItem = metricScope((metrics) => async (event, context) => {
   }
 
   try {
-    let username = getCognitoUsername(event);
+    // let username = getCognitoUsername(event);
+    let username = USER;
     let data = await updateRecord(username, event.pathParameters.id).promise();
     metrics.putMetric("Success", 1, Unit.Count);
     return response(200, data);

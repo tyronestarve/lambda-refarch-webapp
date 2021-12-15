@@ -129,9 +129,7 @@ Resources:
         AllowMethods: "'OPTIONS,HEAD,GET,PUT,POST,DELETE'"
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
       Auth:
-        Authorizers:
-          CognitoAuthorizer:
-            UserPoolArn: !GetAtt "TodoUserPool.Arn"
+        ApiKeyRequired: true
 
   # API Functions
   GetTodoFunction:
@@ -150,6 +148,7 @@ Resources:
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
           USE_DYNAMODB_LOCAL: "0"
           DYNAMODB_LOCAL_URI: ""
+          USER: "demouser"
 
       Events:
         GetItem:
@@ -159,7 +158,7 @@ Resources:
             Method: get
             RestApiId: !Ref TodoApi
             Auth:
-              Authorizer: CognitoAuthorizer
+              ApiKeyRequired: true
 
   GetAllTodoFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -176,6 +175,7 @@ Resources:
           TABLE_NAME: !Ref TodoTable
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
           ENDPOINT_OVERRIDE: ""
+          USER: "demouser"
 
       Events:
         GetItem:
@@ -185,7 +185,7 @@ Resources:
             Method: get
             RestApiId: !Ref TodoApi
             Auth:
-              Authorizer: CognitoAuthorizer
+              ApiKeyRequired: true
 
   CompleteTodoFunction:
       Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -202,6 +202,8 @@ Resources:
             TABLE_NAME: !Ref TodoTable
             AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
             ENDPOINT_OVERRIDE: ""
+            USER: "demouser"
+
 
         Events:
           CompleteItem:
@@ -211,7 +213,7 @@ Resources:
               Method: post
               RestApiId: !Ref TodoApi
               Auth:
-                Authorizer: CognitoAuthorizer
+                ApiKeyRequired: true
 
   AddTodoFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -228,6 +230,8 @@ Resources:
           TABLE_NAME: !Ref TodoTable
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
           ENDPOINT_OVERRIDE: ""
+          USER: "demouser"
+
 
       Events:
         PutItem:
@@ -237,7 +241,7 @@ Resources:
             Method: POST
             RestApiId: !Ref TodoApi
             Auth:
-              Authorizer: CognitoAuthorizer
+              ApiKeyRequired: true
 
   UpdateTodoFunction:
       Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -253,6 +257,7 @@ Resources:
           Variables:
             TABLE_NAME: !Ref TodoTable
             AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+            USER: "demouser"
         Events:
           UpdateItem:
             Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -261,7 +266,7 @@ Resources:
               Method: PUT
               RestApiId: !Ref TodoApi
               Auth:
-                Authorizer: CognitoAuthorizer
+                ApiKeyRequired: true
 
   DeleteTodoFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -278,6 +283,7 @@ Resources:
           TABLE_NAME: !Ref TodoTable
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
           ENDPOINT_OVERRIDE: ""
+          USER: "demouser"
 
       Events:
         DeleteItem:
@@ -287,7 +293,7 @@ Resources:
             Method: DELETE
             RestApiId: !Ref TodoApi
             Auth:
-              Authorizer: CognitoAuthorizer
+              ApiKeyRequired: true
 
   # This role allows API Gateway to push execution and access logs to CloudWatch logs
   ApiGatewayPushToCloudWatchRole:

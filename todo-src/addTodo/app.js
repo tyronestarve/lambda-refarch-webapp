@@ -9,7 +9,7 @@ const DDB = new AWS.DynamoDB({apiVersion: "2012-10-08"});
 const {v1: uuidv1} = require("uuid");
 
 // environment variables
-const {TABLE_NAME, ENDPOINT_OVERRIDE, REGION} = process.env;
+const {TABLE_NAME, ENDPOINT_OVERRIDE, REGION, USER} = process.env;
 const options = {region: REGION};
 AWS.config.update({region: REGION});
 
@@ -43,8 +43,9 @@ function getCognitoUsername(event) {
 
 function addRecord(event) {
     let usernameField = {
-        "cognito-username": getCognitoUsername(event),
+        "cognito-username": USER,
     };
+
 
     // auto generated date fields
     let dISO = new Date().toISOString();
