@@ -127,7 +127,7 @@ Resources:
       Cors:
         AllowOrigin: "'*'"
         AllowMethods: "'OPTIONS,HEAD,GET,PUT,POST,DELETE'"
-        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,x-api-key,X-Amz-Security-Token'"
       Auth:
         ApiKeyRequired: true
 

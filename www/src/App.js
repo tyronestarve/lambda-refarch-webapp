@@ -60,7 +60,7 @@ function App() {
       url: `${config.api_base_url}/item/`,
       mode: "cors",
       headers: {
-        'X-Api-Key': config.api_key
+        'x-api-key': config.api_key
       }
     }).catch(error => {
       console.log(error);
@@ -91,7 +91,7 @@ function App() {
       method: 'POST',
       url: `${config.api_base_url}/item/`,
       headers: {
-        'X-Api-Key': idToken
+        'x-api-key': config.api_key
       },
       data: newToDo
     });
@@ -112,7 +112,7 @@ function App() {
       method: 'DELETE',
       url: `${config.api_base_url}/item/${itemId}`,
       headers: {
-        'X-Api-Key': idToken
+        'x-api-key': config.api_key
       }
     });
 
@@ -131,7 +131,7 @@ function App() {
       method: 'POST',
       url: `${config.api_base_url}/item/${itemId}/done`,
       headers: {
-        "X-Api-Key" : idToken
+        "x-api-key" : config.api_key
       }
     });
 
