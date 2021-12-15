@@ -17,7 +17,7 @@ function App() {
   const [toDos, setToDos] = useState([]);
 
   useEffect(() => {
-    getIdToken();
+    // getIdToken();
     getAllTodos();
   });
 
@@ -59,7 +59,7 @@ function App() {
     const result = await axios({
       url: `${config.api_base_url}/item/`,
       headers: {
-        Authorization: idToken
+        'x-api-key': config.api_key
       }
     }).catch(error => {
       console.log(error);
@@ -90,7 +90,7 @@ function App() {
       method: 'POST',
       url: `${config.api_base_url}/item/`,
       headers: {
-        Authorization: idToken
+        'x-api-key': idToken
       },
       data: newToDo
     });
@@ -111,7 +111,7 @@ function App() {
       method: 'DELETE',
       url: `${config.api_base_url}/item/${itemId}`,
       headers: {
-        Authorization: idToken
+        'x-api-key': idToken
       }
     });
 
@@ -130,7 +130,7 @@ function App() {
       method: 'POST',
       url: `${config.api_base_url}/item/${itemId}/done`,
       headers: {
-        Authorization: idToken
+        "x-api-key" : idToken
       }
     });
 
