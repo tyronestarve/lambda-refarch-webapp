@@ -18,10 +18,8 @@ function App() {
 
   useEffect(() => {
     getIdToken();
-    if (idToken.length > 0) {
-      getAllTodos();
-    }
-  }, [idToken]);
+    getAllTodos();
+  });
 
   axios.interceptors.response.use(response => {
     console.log('Response was received');
