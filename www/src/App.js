@@ -162,8 +162,8 @@ function App() {
                   <ToDo updateAlert={updateAlert} toDos={toDos} addToDo={addToDo} deleteToDo={deleteToDo} completeToDo={completeToDo} />
                 ) : (
                   <Button
-                    href={`https://${config.cognito_hosted_domain}/login?response_type=token&scope=email+openid+profile&client_id=${config.aws_user_pools_web_client_id}&redirect_uri=${config.redirect_url}`}
-                    //   href={`https://ec2-52-81-219-39.cn-north-1.compute.amazonaws.com.cn:8443/auth/realms/bmw/protocol/openid-connect/auth?client_id=tododemo&redirect_uri=https%3A%2F%2Fmaster.d1miyvz1qrjpmq.amplifyapp.com%2F&response_type=id_token&scope=email+openid+profile&nonce=5956a0a9-80c6-40e1-8577-feb07a45ca24`}
+                    // href={`https://${config.cognito_hosted_domain}/login?response_type=token&scope=email+openid+profile&client_id=${config.aws_user_pools_web_client_id}&redirect_uri=${config.redirect_url}`}
+                      href={`https://ec2-52-81-219-39.cn-north-1.compute.amazonaws.com.cn:8443/auth/realms/bmw/protocol/openid-connect/auth?client_id=tododemo&redirect_uri=https%3A%2F%2Fmaster.d1miyvz1qrjpmq.amplifyapp.com%2F&response_type=id_token&scope=email+openid+profile&nonce=5956a0a9-80c6-40e1-8577-feb07a45ca24`}
                       color="primary"
                     className="mt-5 float-center"
                   >
