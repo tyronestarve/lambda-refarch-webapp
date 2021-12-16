@@ -25,7 +25,7 @@ function App() {
     console.log('Response was received');
     return response;
   }, error => {
-    // window.location.href = config.redirect_url;
+    window.location.href = config.redirect_url;
     return Promise.reject(error);
   });
 
@@ -41,6 +41,7 @@ function App() {
   }
 
   const clearCredentials = () => {
+    console.log("clearCredentials........");
     window.location.href = config.redirect_url;
   }
 
@@ -69,6 +70,7 @@ function App() {
     console.log(result);
 
     if (result && result.status === 401) {
+      console.log("401 rcved clearCredentials........");
       clearCredentials();
     } else if (result && result.status === 200) {
       console.log(result.data.Items);
@@ -97,6 +99,7 @@ function App() {
     });
 
     if (result && result.status === 401) {
+      console.log("401 rcved clearCredentials........");
       clearCredentials();
     } else if (result && result.status === 200) {
       getAllTodos();
@@ -117,6 +120,7 @@ function App() {
     });
 
     if (result && result.status === 401) {
+      console.log("401 rcved clearCredentials........");
       clearCredentials();
     } else if (result && result.status === 200) {
       const newToDos = toDos.filter((item, index) => index !== indexToRemove);
