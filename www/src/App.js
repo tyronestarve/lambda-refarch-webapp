@@ -25,7 +25,7 @@ function App() {
     console.log('Response was received');
     return response;
   }, error => {
-    window.location.href = config.redirect_url;
+    // window.location.href = config.redirect_url;
     return Promise.reject(error);
   });
 
